@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crafting Store Pakistan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-900 text-white p-6 text-center">
+    <h1 class="text-3xl font-bold">Crafting Store Pakistan</h1>
+    <nav class="mt-3">
+      <ul class="flex justify-center gap-8">
+        <li><a href="#" class="hover:text-yellow-400">Home</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Products</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Cart</a></li>
+        <li><a href="#" class="hover:text-yellow-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-red-600 text-white py-12 text-center">
+    <h2 class="text-4xl font-semibold">Handmade & Beauty Products</h2>
+    <p class="mt-2">Shop mugs, strollers, facewash, creams, watches and more</p>
+  </section>
+
+  <!-- Products -->
+  <section id="product-section" class="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Products will be generated via JS -->
+  </section>
+
+  <!-- Cart -->
+  <section class="bg-white max-w-3xl mx-auto p-6 mt-8 shadow rounded">
+    <h3 class="text-xl font-bold mb-4">🛒 Cart Items</h3>
+    <ul id="cartList" class="list-disc pl-5 text-gray-700">
+      <!-- Cart items will appear here -->
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white text-center p-5 mt-10">
+    <p>&copy; 2025 Crafting Store Pakistan</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const products = [
+      { name: "Handmade Mug", image: "https://via.placeholder.com/200x150?text=Mug" },
+      { name: "Baby Stroller", image: "https://via.placeholder.com/200x150?text=Stroller" },
+      { name: "Herbal Facewash", image: "https://via.placeholder.com/200x150?text=Facewash" },
+      { name: "Skin Cream", image: "https://via.placeholder.com/200x150?text=Cream" },
+      { name: "Beauty Kit", image: "https://via.placeholder.com/200x150?text=Beauty+Kit" },
+      { name: "Men's Watch", image: "https://via.placeholder.com/200x150?text=Men+Watch" },
+      { name: "Women's Watch", image: "https://via.placeholder.com/200x150?text=Women+Watch" },
+      { name: "Organic Lip Balm", image: "https://via.placeholder.com/200x150?text=Lip+Balm" }
+    ];
+
+    const section = document.getElementById('product-section');
+    const cartList = document.getElementById('cartList');
+
+    products.forEach(p => {
+      const div = document.createElement('div');
+      div.className = "bg-white p-4 rounded-xl shadow text-center";
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" class="rounded mb-3 mx-auto">
+        <h3 class="font-bold text-lg mb-2">${p.name}</h3>
+        <button onclick="addToCart('${p.name}')" class="bg-blue-600 hover:bg-blue-800 text-white px-4 py-2 rounded">Add to Cart</button>
+      `;
+      section.appendChild(div);
+    });
+
+    function addToCart(productName) {
+      const li = document.createElement('li');
+      li.textContent = productName;
+      cartList.appendChild(li);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crafting Store Pakistan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-blue-100 font-sans">
+
+  <!-- Fullscreen Login Screen -->
+  <div id="initialLogin" class="fixed inset-0 bg-white z-[999] flex items-center justify-center">
+    <div class="bg-blue-100 p-8 rounded-xl shadow-xl w-96">
+      <h2 class="text-2xl font-bold text-center text-blue-900 mb-4">🔐 Welcome to Crafting Store</h2>
+      <input id="username" type="text" placeholder="Enter username" class="w-full mb-3 p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
+      <input id="password" type="password" placeholder="Enter password" class="w-full mb-4 p-2 border rounded focus:ring-2 focus:ring-blue-400 outline-none">
+      <button onclick="validateLogin()" class="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-900 transition">Login</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="hidden">
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white p-6 sticky top-0 shadow z-50">
+      <div class="flex items-center justify-between max-w-6xl mx-auto">
+        <h1 class="text-2xl font-extrabold tracking-wide">🧵 Crafting Store Pakistan</h1>
+        <nav class="flex items-center gap-6 text-lg">
+          <a href="#" class="hover:text-yellow-400 transition">Home</a>
+          <a href="#" class="hover:text-yellow-400 transition">Products</a>
+          <a href="#" class="hover:text-yellow-400 transition">Cart</a>
+          <a href="#" class="hover:text-yellow-400 transition">Contact</a>
+          <button onclick="openModal()" class="bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-500">Login/Register</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-red-600 text-white py-20 text-center overflow-hidden">
+      <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8')] bg-cover bg-center opacity-30"></div>
+      <div class="relative z-10">
+        <h2 class="text-5xl font-bold mb-3 drop-shadow">Handmade & Beauty Products</h2>
+        <p class="text-lg font-light">Shop mugs, strollers, facewash, creams, watches and more</p>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="product-section" class="p-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Product cards added via JavaScript -->
+    </section>
+
+    <!-- JazzCash Payment Section -->
+    <section class="bg-white max-w-3xl mx-auto mt-10 p-6 rounded-xl shadow text-center">
+      <h3 class="text-xl font-bold mb-2 text-green-700">💳 JazzCash Payment</h3>
+      <p class="text-gray-800">Send payment to this number:</p>
+      <p class="text-xl text-red-600 font-bold mt-2">0326-4743124</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white text-center p-5 mt-16">
+      <p>&copy; 2025 Crafting Store Pakistan. Designed with ❤️</p>
+    </footer>
+
+    <!-- Login/Register Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+      <div class="bg-white rounded-xl p-8 w-96 shadow-lg">
+        <h3 class="text-2xl font-bold text-center mb-4 text-blue-700">🔐 Login / Register</h3>
+        <input type="text" placeholder="Username" class="w-full p-2 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <input type="password" placeholder="Password" class="w-full p-2 mb-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-800 transition">Login</button>
+        <p class="text-center mt-4 text-sm text-gray-600">Don't have an account? <a href="#" class="text-blue-500 underline">Register</a></p>
+        <button onclick="closeModal()" class="mt-4 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-1 rounded">Close</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Simple Login
+    function validateLogin() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if (user !== "" && pass !== "") {
+        document.getElementById('initialLogin').style.display = 'none';
+        document.getElementById('mainContent').classList.remove('hidden');
+      } else {
+        alert("Please enter username and password!");
+      }
+    }
+
+    function openModal() {
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('flex');
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Product List
+    const products = [
+      { name: "Handmade Mug", price: "Rs. 850", image: "https://static.platform.michaels.com/2c-prd/en_US/144969994853456.jpg?fit=inside|1080:1080" },
+      { name: "Baby Stroller", price: "Rs. 6,500", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEup7AvKYg840jIJO0sH6eHntMT8ksKu10Yg&s" },
+      { name: "Herbal Facewash", price: "Rs. 450", image: "https://newtrendindustries.com/cdn/shop/files/FacewashMockupcopy.png?v=1711447934" },
+      { name: "Skin Beauty", price: "Rs. 780", image: "https://media.cybermart.pk/cybermart/Ven0061/Img_1714385063471.jpg" },
+      { name: "Beauty Kit", price: "Rs. 2,100", image: "https://m.media-amazon.com/images/I/81t6uOOt5xL._AC_UF1000,1000_QL80_.jpg" },
+      { name: "Men's Watch", price: "Rs. 3,400", image: "https://i0.wp.com/watchcentre.pk/wp-content/uploads/2022/06/casio-watches-mens-category-banner-650.webp?fit=650%2C406&ssl=1" },
+      { name: "Women's Watch", price: "Rs. 3,200", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIfL57Dbr6ih3UaRA3_VUpiH5JzwugmbL4OQ&s" },
+      { name: "Organic Lip Balm", price: "Rs. 320", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmtNg3oAKupCErOO0pDqqROxOYdyj_UltpNg&s" }
+    ];
+
+    const section = document.getElementById('product-section');
+
+    products.forEach(p => {
+      const div = document.createElement('div');
+      div.className = "bg-white p-4 rounded-xl shadow hover:shadow-xl transition transform hover:-translate-y-1";
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" class="rounded mb-3 mx-auto w-full h-40 object-cover">
+        <h3 class="font-bold text-xl mb-1">${p.name}</h3>
+        <p class="text-blue-700 font-semibold mb-2">${p.price}</p>
+        <button onclick="addToCart('${p.name}')" class="bg-blue-600 hover:bg-blue-800 text-white px-4 py-2 rounded transition">Buy</button>
+      `;
+      section.appendChild(div);
+    });
+
+    // Buy Function (Ask for Address)
+    function addToCart(productName) {
+      const address = prompt(`🛍️ You selected "${productName}". Please enter your address for delivery:`);
+      if (address) {
+        alert(`✅ Thank you! Your order for "${productName}" will be delivered to:\n📍 ${address}`);
+      } else {
+        alert("❗ Order cancelled. No address entered.");
+      }
+    }
+  </script>
+
+</body>
+</html>
